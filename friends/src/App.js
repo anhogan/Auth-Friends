@@ -2,22 +2,10 @@ import React from 'react';
 import { Route, Link, Redirect } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import FriendList from './components/FriendsList';
+import PrivateRoute from './utils/PrivateRoute';
 import './App.css';
 
 function App() {
-  const PrivateRoute = ({ component: FriendList, ...rest }) => (
-    <Route
-      {...rest}
-      render={props =>
-        localStorage.getItem("token") ? (
-          <FriendList {...props} />
-        ) : (
-          <Redirect to="/login" />
-        )
-      }
-    />
-  );
-
   return (
     <div className="App">
       <nav>
