@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, Redirect } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import LoginPage from './components/LoginPage';
 import FriendList from './components/FriendsList';
 import PrivateRoute from './utils/PrivateRoute';
@@ -13,7 +13,7 @@ function App() {
         <Link to="/friends">Friends</Link>
       </nav>
       <Route path="/login" component={LoginPage} />
-      <PrivateRoute path="/friends" component={FriendList} />
+      <PrivateRoute exact path="/friends" component={FriendList} />
     </div>
   );
 }

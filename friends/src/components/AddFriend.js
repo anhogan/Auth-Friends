@@ -20,7 +20,7 @@ const AddFriend = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const age = parseInt(newFriend.age);
-    axios.post('http://localhost:5000/api/friends', {
+    axios.post('/api/friends', {
       id: cuid(),
       name: newFriend.name,
       email: newFriend.email,
@@ -44,25 +44,25 @@ const AddFriend = () => {
             id="name"
             name="name"
             type="text"
-            value={friend.name}
+            value={newFriend.name}
             onChange={handleChanges} />
           </div>
           <div>
-            <label htmlFor="name" />
+            <label htmlFor="age" />
             <input 
-              id="name"
-              name="name"
+              id="age"
+              name="age"
               type="text"
-              value={friend.name}
+              value={newFriend.age}
               onChange={handleChanges} />
           </div>
           <div>
-            <label htmlFor="name" />
+            <label htmlFor="email" />
             <input 
-              id="name"
-              name="name"
+              id="email"
+              name="email"
               type="text"
-              value={friend.name}
+              value={newFriend.email}
               onChange={handleChanges} />
           </div>
           <button>Add Friend</button>

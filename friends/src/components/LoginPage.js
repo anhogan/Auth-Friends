@@ -11,10 +11,11 @@ const LoginPage = (props) => {
   const login = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axiosWithAuth().post('http://localhost:5000/api/login', credentials)
+    axiosWithAuth().post('/api/login', credentials)
       .then(res => {
-        window.localStorage.setItem('token', res.data.token);
-        props.history.push('http://localhost:5000/api/friends');
+        console.log(res);
+        window.localStorage.setItem('token', res.data.payload);
+        props.history.push('/api/friends');
         setIsLoading(false);
       });
   };
