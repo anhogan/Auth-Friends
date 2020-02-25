@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { axiosWithAuth } from './axiosAuth';
+import { axiosWithAuth } from '../utils/axiosAuth';
 
 const LoginPage = (props) => {
   const [credentials, setCredentials] = useState({
@@ -11,9 +11,9 @@ const LoginPage = (props) => {
   const login = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axiosWithAuth.post('http://localhost:5000/api/login', credentials)
+    axiosWithAuth().post('http://localhost:5000/api/login', credentials)
       .then(res => {
-        localStorage.setItem('token', res.data.token);
+        window.localStorage.setItem('token', res.data.token);
         props.history.push('http://localhost:5000/api/friends');
         setIsLoading(false);
       });
