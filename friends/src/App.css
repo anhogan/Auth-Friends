@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+a {
+  margin: 1%;
+  text-decoration: none;
+  color: blue;
+}
+
+label {
+  margin: 1%;
+}
+
+.add-friend {
+  width: 100%;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  margin: 1% auto;
+}
+
+.friends {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.friend-container {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 1%;
+  width: 28%;
+  margin: 1%;
+}

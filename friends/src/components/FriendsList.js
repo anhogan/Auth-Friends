@@ -17,7 +17,7 @@ const FriendList = () => {
   });
 
   const editUser = user => {
-    axiosWithAuth().put(`/api/friends/${user.id}`, user)
+    axiosWithAuth().put(`/api/friends/${user.id}`, {user})
       .then(res => {
         console.log(res);
       })
@@ -38,13 +38,13 @@ const FriendList = () => {
   };
 
   return (
-    <div>
+    <div className="friends">
       {friends.map((friend) => (
-        <div key={friend.id}>
+        <div key={friend.id} className="friend-container">
           <h2>{friend.name}</h2>
           <p>Age: {friend.age}</p>
           <p>Email: {friend.email}</p>
-          <button onClick={() => deleteUser(friend.id)}>X</button>
+          <button onClick={() => deleteUser(friend.id)}>Remove</button>
           <button onClick={() => editUser(friend)}>Edit</button>
         </div>
       ))}
