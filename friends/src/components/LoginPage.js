@@ -8,7 +8,7 @@ const LoginPage = (props) => {
   const login = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    axios.post('http://localhost:5000/api/login', credentials)
+    axiosWithAuth.post('http://localhost:5000/api/login', credentials)
       .then(res => {
         localStorage.setItem('token', res.data.token);
         props.history.push('http://localhost:5000/api/friends');
@@ -20,32 +20,38 @@ const LoginPage = (props) => {
     setCredentials({
       ...credentials,
       [e.target.name]: e.target.value,
-    })
+    });
   };
 
   return (
     <div>
-      <form onSubmit={login}>
+      {isLoading ? (
         <div>
-          <label htmlFor="username" />
-          <input 
-            id="username" 
-            name="username" 
-            type="text" 
-            value={credentials.username} 
-            onChange={handleChange} />
+          Loading Friends...
         </div>
-        <div>
-          <label htmlFor="password" />
-          <input 
-            id="password" 
-            name="password" 
-            type="password" 
-            value={credentials.password} 
-            onChange={handleChange} />
-        </div>
-        <button>Login</button>
-      </form>
+      ) : (
+        <form onSubmit={login}>
+          <div>
+            <label htmlFor="username" />
+            <input 
+              id="username" 
+              name="username" 
+              type="text" 
+              value={credentials.username} 
+              onChange={handleChange} />
+          </div>
+          <div>
+            <label htmlFor="password" />
+            <input 
+              id="password" 
+              name="password" 
+              type="password" 
+              value={credentials.password} 
+              onChange={handleChange} />
+          </div>
+          <button>Login</button>
+        </form>
+      )}
     </div>
   );
 };
