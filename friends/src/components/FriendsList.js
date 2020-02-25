@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosAuth';
+import PrivateRoute from '../utils/PrivateRoute';
 import AddFriend from './AddFriend';
 
 const FriendList = () => {
@@ -24,7 +25,7 @@ const FriendList = () => {
           <p>Email: {friend.email}</p>
         </div>
       ))}
-      <AddFriend />
+      <PrivateRoute exact path="/api/friends" component={AddFriend} />
     </div>
   );
 };
