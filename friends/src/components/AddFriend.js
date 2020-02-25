@@ -3,7 +3,12 @@ import axios from 'axios';
 import cuid from 'cuid';
 
 const AddFriend = () => {
-  const [newFriend, setNewFriend] = useState({});
+  const [newFriend, setNewFriend] = useState({
+    name: '',
+    age: '',
+    email: '',
+    id: ''
+  });
 
   const handleChanges = e => {
     setNewFriend({
