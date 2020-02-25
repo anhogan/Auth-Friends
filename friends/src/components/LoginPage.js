@@ -1,33 +1,48 @@
 import React, { useState } from 'react';
+import { axiosWithAuth } from './axiosAuth';
 
-const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginPage = (props) => {
+  const [credentials, setCredentials] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const login = (e) => {
     e.preventDefault();
-    setUsername('');
-    setPassword('');
-  }
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setIsLoading(true);
+    axios.post('http://localhost:5000/api/login', credentials)
+      .then(res => {
+        localStorage.setItem('token', res.data.token);
+        props.history.push('http://localhost:5000/api/friends');
+        setIsLoading(false);
+      });
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+  const handleChange = e => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    })
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={login}>
         <div>
           <label htmlFor="username" />
-          <input id="username" name="username" type="text" value={username} onChange={handleUsernameChange} />
+          <input 
+            id="username" 
+            name="username" 
+            type="text" 
+            value={credentials.username} 
+            onChange={handleChange} />
         </div>
         <div>
           <label htmlFor="password" />
-          <input id="password" name="password" type="password" value={password} onChange={handlePasswordChange} />
+          <input 
+            id="password" 
+            name="password" 
+            type="password" 
+            value={credentials.password} 
+            onChange={handleChange} />
         </div>
         <button>Login</button>
       </form>

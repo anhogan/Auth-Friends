@@ -10,11 +10,3 @@ export const axiosWithAuth = () => {
     }
   });
 };
-
-export const login = (userCredentials) => {
-  axios.post('http://localhost:5000/api/login', userCredentials)
-    .then(res => {
-      localStorage.setItem('token', res.data.token);
-      props.history.push('http://localhost:5000/api/friends');
-    })
-}
