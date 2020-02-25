@@ -13,7 +13,6 @@ const LoginPage = (props) => {
     setIsLoading(true);
     axiosWithAuth().post('/api/login', credentials)
       .then(res => {
-        console.log(res);
         window.localStorage.setItem('token', res.data.payload);
         props.history.push('/api/friends');
         setIsLoading(false);

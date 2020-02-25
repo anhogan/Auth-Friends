@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import cuid from 'cuid';
+import { axiosWithAuth } from '../utils/axiosAuth';
 
 const AddFriend = () => {
   const [newFriend, setNewFriend] = useState({
     name: '',
     age: '',
-    email: '',
-    id: ''
+    email: ''
   });
 
   const handleChanges = e => {
@@ -19,15 +17,19 @@ const AddFriend = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const age = parseInt(newFriend.age);
-    axios.post('/api/friends', {
-      id: cuid(),
+    const parsedAge = parseInt(newFriend.age);
+    axiosWithAuth().post('/api/friends', {
       name: newFriend.name,
       email: newFriend.email,
-      age: age
+      age: parsedAge
     })
       .then(res => {
         console.log(res);
+        setNewFriend({
+          name: '',
+          age: '',
+          email: ''
+        });
       })
       .catch(err => {
         console.log(err);
