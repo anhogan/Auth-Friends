@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <Link to="/login">Login</Link>
-        <Link to="/friends">Friends</Link>
+        <Link to="/api/login">Login</Link>
+        <Link to="/api/friends">Friends</Link>
       </nav>
-      <Route path="/login" component={LoginPage} />
-      <PrivateRoute exact path="/friends" component={FriendList} />
+      <Route path="/api/login" component={LoginPage} />
+      <PrivateRoute exact path="/api/friends" component={FriendList} />
     </div>
   );
 }
