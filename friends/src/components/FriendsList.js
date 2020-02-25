@@ -16,6 +16,16 @@ const FriendList = () => {
       });
   });
 
+  const editUser = user => {
+    axiosWithAuth().put(`/api/friends/${user.id}`, user)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const deleteUser = id => {
     axiosWithAuth().delete(`/api/friends/${id}`)
       .then(res => {
@@ -24,8 +34,8 @@ const FriendList = () => {
       .catch(err => {
         console.log(err);
 
-      })
-  }
+      });
+  };
 
   return (
     <div>
@@ -35,6 +45,7 @@ const FriendList = () => {
           <p>Age: {friend.age}</p>
           <p>Email: {friend.email}</p>
           <button onClick={() => deleteUser(friend.id)}>X</button>
+          <button onClick={() => editUser(friend)}>Edit</button>
         </div>
       ))}
       <PrivateRoute exact path="/api/friends" component={AddFriend} />
