@@ -11,7 +11,7 @@ export const axiosWithAuth = () => {
   });
 };
 
-const login = () => {
+export const login = (userCredentials) => {
   axios.post('http://localhost:5000/api/login', userCredentials)
     .then(res => {
       localStorage.setItem('token', res.data.token);
